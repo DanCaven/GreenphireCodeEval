@@ -46,19 +46,23 @@ for num in choosen:
     temp = (num,choosen[num]) # create a list of tuples
     stuff.append(temp)
 stuff.sort(key = lambda x:x[1], reverse=True) # sort the list on the number of times that a number was chosen
-
-used = [] # used to store all the numbers that have been used
+print(stuff)
+#used = [] # used to store all the numbers that have been used
 final = [] # used to store the powerball numbers
 for pair in stuff:
-    if pair[1] not in used and len(used)<6: # check to see if the number has been used and make sure that 6 numbers have not been chosen already
+    if len(final)<6: # check to see if the number has been used and make sure that 6 numbers have not been chosen already
+        print(pair)
         temp = chooseRand(stuff,pair[1])
-        used.append(pair[1])
+        stuff.remove(pair)
+        print(stuff)
+        #used.append(pair[1])
         final.append(temp)
 
+print(final)
 
 
 print("Winning numbers: ", end="")
-for num in range(len(stuff[:5])):
-    print(stuff[num][0], end=" ")
+for num in range(len(final[:5])):
+    print(final[num][0], end=" ")
 
-print("Powerball "+stuff[6][0])
+print("Powerball "+final[5][0])
